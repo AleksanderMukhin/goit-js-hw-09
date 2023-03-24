@@ -1,4 +1,6 @@
+// Описан в документации
 import flatpickr from "flatpickr";
+// Дополнительный импорт стилей
 import "flatpickr/dist/flatpickr.min.css";
 
 import Notiflix from 'notiflix';
@@ -17,8 +19,7 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose(selectedDates) {
-    
+  onClose(selectedDates) {    
     const downData = selectedDates[0].getTime();
     const nowData = new Date().getTime();
     const ms = downData - nowData;
@@ -31,15 +32,14 @@ const options = {
 
     if (downData) {
       btnStart.disabled = false;
-    }
+    };
 
     const { days, hours, minutes, seconds } = convertMs(ms);
     daysVal.textContent = addLeadingZero(days);
     hoursVal.textContent = addLeadingZero(hours);
     minutesVal.textContent = addLeadingZero(minutes);
     secondsVal.textContent = addLeadingZero(seconds);
-  },
-  
+  },  
 };
 
 btnStart.addEventListener('click', startTimer);
@@ -47,13 +47,13 @@ flatpickr("#datetime-picker", options);
 
 function startTimer() {
   let intervalId;
-
+  btnStart.disabled = true;
   if (intervalId) clearInterval(intervalId);
   intervalId = setInterval(() => {
     const minTime = input._flatpickr.selectedDates[0].getTime() - Date.now();
     if (minTime <= 0) {
       clearInterval(intervalId);
-      btnStart.disabled = true;
+      
       return;
     }
     const { days, hours, minutes, seconds } = convertMs(minTime);
@@ -64,11 +64,9 @@ function startTimer() {
   }, 1000);
 };
 
-
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
-}
-
+};
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -87,4 +85,4 @@ function convertMs(ms) {
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
   return { days, hours, minutes, seconds };
-}
+};
