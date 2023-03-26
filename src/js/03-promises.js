@@ -14,6 +14,10 @@ form.addEventListener('submit', event => {
   const delay = parseInt(delayInput.value);
   const step = parseInt(stepInput.value);
 
+  if (amount <= 0 || delay <= 0 || step <= 0) {
+    return Notiflix.Notify.failure(`❌ Enter a value greater than 0`);
+  }
+
   for (let i = 1; i <= amount; i += 1) {
     createPromise(i, delay + i * step)
       .then(({ position, delay }) => {
