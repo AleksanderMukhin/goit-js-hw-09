@@ -6,6 +6,8 @@ stopBtn.disabled = true;
 
 startBtn.addEventListener("click", changeColor);
 
+let timerId = null;
+
 stopBtn.addEventListener("click", () => {
   clearInterval(timerId);
   startBtn.disabled = false;
