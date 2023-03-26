@@ -12,6 +12,7 @@ const minutesVal = document.querySelector('[data-minutes]');
 const secondsVal = document.querySelector('[data-seconds]');
 const input = document.querySelector('#datetime-picker');
 
+
 btnStart.disabled = true;
 
 const options = {
@@ -63,7 +64,7 @@ function startTimer() {
     secondsVal.textContent = addLeadingZero(seconds);
   }, 1000);
 };
-
+console.log("🚀  input", input._flatpickr)
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 };

@@ -13,11 +13,14 @@ stopBtn.addEventListener("click", () => {
 });
 
 function changeColor() {
+  startBtn.disabled = true;
+  stopBtn.disabled = false;
+  
   body.style.backgroundColor = getRandomHexColor();
+      
   timerId = setInterval(() => {
     body.style.backgroundColor = getRandomHexColor();
-    stopBtn.disabled = false;
-    startBtn.disabled = true;
+
   }, 1000);
 };
 
