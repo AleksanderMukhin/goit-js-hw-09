@@ -13,8 +13,8 @@ stopBtn.addEventListener("click", () => {
 });
 
 function changeColor() {
-  startBtn.disabled = true;
   stopBtn.disabled = false;
+  startBtn.disabled = true;  
   
   body.style.backgroundColor = getRandomHexColor();
       
